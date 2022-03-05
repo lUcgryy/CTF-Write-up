@@ -24,7 +24,7 @@ Khi nhập xong, nó sẽ yêu cầu mình nhập mật khẩu, nhập FIAWelcom
 Thế là chúng ta đã truy cập được vào máy chủ rồi. Dùng `cat flag1` để lấy flag đầu tiên.
 
 ![Step2](/FIACTF/images/Task1/Step2.png)
-## 2)Hide and Seek
+## 2) Hide and Seek
 Câu hỏi:
 
 ![Câu hỏi](/FIACTF/images/Task2/Task2.png)
@@ -211,3 +211,47 @@ Bonus: Muốn ngầu hơn thì ta cũng có thể sử dụng `tesseract` để 
 ```console
 tesseract flag9 out ; cat out.txt
 ```
+## 10) "Least Privileges Model" Haha good jokes
+Câu hỏi: 
+
+![Câu hỏi](/FIACTF/images/Task10/Task10.png)
+
+Hint:
+
+![Hint](/FIACTF/images/Task10/Hint.png)
+
+Ở đây, chúng ta được cho cái file .zip. Hãy giải nén nào (mật khẩu là flag 9)
+```console
+unrar e wordlist.rar
+```
+Ta sẽ được một cái file tên là "wordlist.txt". Dựa vào cái tựa đề và cái tên file này thì nhiều khả năng là chúng ta sẽ brute force vào tài khoản root trong máy chủ ssh. Vậy chúng ta thử xem sao
+
+Sau một lúc thì mình phát hiện ra chúng ta có thể truy cập vào /etc/shadow ở máy chủ ssh và có tài khoản root luôn. Shadow là 1 file chứa mật khẩu đã bị mã hóa của mỗi tài khoản.
+
+![Step1](/FIACTF/images/Task10/Step1.png)
+
+Như vậy, cùng với wordlist được cho, mình sẽ sử dụng John the Ripper để brute force lên root qua các bước sau
+
+Copy thông tin của root ở 2 file /etc/shadow và /etc/passwd vào 2 file:
+
+![Step2](/FIACTF/images/Task10/Step2.png)
+
+![Step3](/FIACTF/images/Task10/Step3.png)
+
+Unshadow 2 file trên:
+```console
+unshadow passwd.txt shadow.txt > unshadowed.txt
+```
+Brute force nào:
+```console
+john --wordlist=~/wordlist.txt unshadowed.txt
+```
+Và xong, chúng ta đã tìm ra mật khẩu của tài khoản root là *6E2TyvD11wm9v-*
+
+![Step4](/FIACTF/images/Task10/Step4.png)
+
+Có mật khẩu rồi thì truy cập bằng `su root` thôi
+
+![Step5](/FIACTF/images/Task10/Step5.png)
+
+Vậy là chúng ta đã hoàn thành hết thử thách rồi.
