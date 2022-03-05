@@ -46,7 +46,7 @@ Có vẻ thử thách này liên quan đến việc giải nén và mã hóa. V�
 
 ![Step1](/FIACTF/images/Task3/Step1.png)
 
-Đây là file gunzip, vậy ta sẽ đổi tên file bằng lệnh:
+Đây là file gzip, vậy ta sẽ đổi tên file bằng lệnh:
 ```console
 mv Flag3 Flag3.gz
 ```
