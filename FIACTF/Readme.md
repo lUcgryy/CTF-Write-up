@@ -220,7 +220,7 @@ Hint:
 
 ![Hint](/FIACTF/images/Task10/Hint.png)
 
-Ở đây, chúng ta được cho cái file .zip. Hãy giải nén nào (mật khẩu là flag 9)
+Ở đây, chúng ta được cho cái file .rar. Hãy giải nén nào (mật khẩu là flag 9)
 ```console
 unrar e wordlist.rar
 ```
