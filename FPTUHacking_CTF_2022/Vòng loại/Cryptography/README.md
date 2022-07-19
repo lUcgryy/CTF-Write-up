@@ -55,11 +55,11 @@ Dưới đây là các thử thách RSA mà mình đã giải được
 ### **1. RRSSAA**
 Câu hỏi:
 
-![Question](/FPTUHacking_CTF_2022/Cryptography/images/RRSSAA/Question.png)
+![Question](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/images/RRSSAA/Question.png)
 
-File mã hóa: [enc.py](/FPTUHacking_CTF_2022/Cryptography/Src_code/RRSSAA/enc.py)
+File mã hóa: [enc.py](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/Src_code/RRSSAA/enc.py)
 
-Output của file trên (message đã được mã hóa): [out.txt](/FPTUHacking_CTF_2022/Cryptography/Src_code/RRSSAA/output.txt)
+Output của file trên (message đã được mã hóa): [out.txt](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/Src_code/RRSSAA/output.txt)
 
 Dựa vào hai file trên thì ta thấy rằng flag bị chia làm 2 phần, mỗi phần được cung cấp các số là c, e và n
 
@@ -71,7 +71,7 @@ python3 RsaCtfTool.py -n 6490575414546753422169557924726633698938840342804007877
 ```
 - Kết quả:
 
-![Part1](/FPTUHacking_CTF_2022/Cryptography/images/RRSSAA/Part1.png)
+![Part1](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/images/RRSSAA/Part1.png)
 
 Phần 2:
 ```zsh
@@ -79,7 +79,7 @@ python3 RsaCtfTool.py -n 1390813150218688822436426208083343248211286158179111104
 ```
 - Kết quả
 
-![Part2](/FPTUHacking_CTF_2022/Cryptography/images/RRSSAA/Part2.png)
+![Part2](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/images/RRSSAA/Part2.png)
 
 Ghép 2 phần lại ta sẽ được flag:
 ``` 
@@ -89,11 +89,11 @@ FPTUHacking{Us3_0f_s1ngl3_pr1m3_4nd_cl0se_prim3s_w3r3_w4st3_0f_c0mput3r_Cycl35}
 ### **2. characters**
 Câu hỏi
 
-![Question](/FPTUHacking_CTF_2022/Cryptography/images/characters/Question.png)
+![Question](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/images/characters/Question.png)
 
-File mã hóa: [enc.py](/FPTUHacking_CTF_2022/Cryptography/Src_code/characters/enc.py)
+File mã hóa: [enc.py](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/Src_code/characters/enc.py)
 
-Output của file trên (message đã được mã hóa): [out.txt](/FPTUHacking_CTF_2022/Cryptography/Src_code/characters/out.txt)
+Output của file trên (message đã được mã hóa): [out.txt](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/Src_code/characters/out.txt)
 
 Câu này cũng như câu trước nhưng mà flag bị chia làm nhiều phần, mỗi phần một kí tự và mã hóa từng kí tự của flag rồi bỏ các kết quả đó trong một list ct.
 ```python
@@ -103,7 +103,7 @@ for i in flag:
 ```
 Vấn đề này thì mình chỉ cần viết code xử lí từng con số trong mảng rồi ghép chúng lại. Đầu tiên ta vẫn phải tìm p và q. Mình dùng [factordb](http://factordb.com) để tìm ra hai số trên.
 
-![factordb](/FPTUHacking_CTF_2022/Cryptography/images/characters//factordb.png)
+![factordb](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/images/characters//factordb.png)
 
 Sau khi có hai số rồi thì mình viết script để xử lí list ct trên:
 ```python
@@ -112,7 +112,7 @@ for i in range(len(ct)):
     flag += chr(pow(ct[i], d, n))
 print(flag)
 ```
-Script đầy đủ: [dec.py](/FPTUHacking_CTF_2022/Cryptography/Script/characters.py)
+Script đầy đủ: [dec.py](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/Script/characters.py)
 
 Flag:
 ```
@@ -121,11 +121,11 @@ FPTUHacking{3ncRYpt1ng_34ch_ch4r_ainT_G0nn4_h3lp}
 ### **3. keyRSA**
 Câu hỏi
 
-![Question](/FPTUHacking_CTF_2022/Cryptography/images/keyRSA//Question.png)
+![Question](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/images/keyRSA//Question.png)
 
-File mã hóa: [enc.py](/FPTUHacking_CTF_2022/Cryptography/Src_code/keyRSA/enc.py)
+File mã hóa: [enc.py](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/Src_code/keyRSA/enc.py)
 
-Đầu tiên, ta hãy nhìn vào file [enc.py](/FPTUHacking_CTF_2022/Cryptography/Src_code/keyRSA/enc.py) thì ta thấy có tham số x khá là lạ
+Đầu tiên, ta hãy nhìn vào file [enc.py](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/Src_code/keyRSA/enc.py) thì ta thấy có tham số x khá là lạ
 ```python
 x = p % (n//2)
 ```
@@ -136,7 +136,7 @@ Mình thấy k chỉ có thể bằng 0 vì nếu $k < 0$ thì $p < 0$ (vì khi 
 
 Chạy lại file kiểm tra lại nhận định của mình, dùng [factordb](http://factordb.com), tính ```n % p```  thì thấy nhận định của mình là đúng rồi.
 
-Tiếp tục đọc [enc.py](/FPTUHacking_CTF_2022/Cryptography/Src_code/keyRSA/enc.py) thì mình thấy dòng này
+Tiếp tục đọc [enc.py](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/Src_code/keyRSA/enc.py) thì mình thấy dòng này
 ```python
 user_d = int(input("\nEnter your key : \n"))
     if user_d != d:
@@ -148,13 +148,13 @@ Hmm, có vẻ như nó kêu mình nhập một số nào đó lưu vào biến `
 - $ct^{user\_d}\bmod n = ct^d\bmod n$
 
 Mình phải tìm ra tính chất nào đó của ```user_d``` để đơn giản hóa vấn đề. Sau một hồi Google thì phát hiện ra tính chất này (nguồn: https://vi.wikipedia.org/wiki/S%E1%BB%91_h%E1%BB%8Dc_m%C3%B4_%C4%91un#S%E1%BB%91_m%C5%A9):
-![Tính chất](/FPTUHacking_CTF_2022/Cryptography/images/keyRSA/Math.png)
+![Tính chất](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/images/keyRSA/Math.png)
 
 Vì vậy, mình chỉ cần cho $user\_d = d + 2*phi$ là được
 
 Cuối cùng, mình viết script sử dụng pwntools để tương tác với server của thử thách. Nếu làm tay sẽ gần như không làm đc vì nếu để lâu quá thì server sẽ không chạy nữa (mình mất rất lâu mới nhận ra vấn đề này :( )
 
-Đây là script để giải thử thách này: [dec.py](/FPTUHacking_CTF_2022/Cryptography/Script/keyRSA.py)
+Đây là script để giải thử thách này: [dec.py](/FPTUHacking_CTF_2022/V%C3%B2ng%20lo%E1%BA%A1i/Cryptography/Script/keyRSA.py)
 
 Flag: 
 ```
