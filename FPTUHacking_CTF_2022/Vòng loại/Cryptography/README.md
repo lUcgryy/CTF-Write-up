@@ -1,8 +1,7 @@
-# **FPTU Hacking CTF 2022 Writeup của team [FI?]**
+# **FPTU Hacking CTF 2022 Writeup của team [FI?] (Crptography)**
 
-Đây là cuộc thi CTF dành riêng cho các bạn hiện đang học tại các cơ sở của đại học FPT. Tất cả các challenge trong cuộc thi lần này đều do team 0ni0n ra đề. Dưới đây là các challenges mà team mình đã làm được.
+Đây là cuộc thi CTF dành riêng cho các bạn hiện đang học tại các cơ sở của đại học FPT. Tất cả các challenge trong cuộc thi lần này đều do team 0ni0n ra đề. Dưới đây là các challenges crptography mà team mình đã làm được.
 
-## **I. Cryptography**
 Do team mình chỉ làm được ba câu liên quan đến RSA nên team trước hết sẽ nói về những điều cơ bản về loại mã hóa này
 
 #### **Các tham số cơ bản**
