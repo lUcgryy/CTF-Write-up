@@ -7,14 +7,3 @@ lv5: CBJS{trUe_0r_f4lse_d3tEct1on_b56c6ec4dd59e1741144ee8913e6b857}
 lv6: CBJS{Dr_Str4nge_W1Ll_pR0ud_oF_y0U_5be2459fbc44d1c2331cb840acd15fd0}
 lv7.1: CBJS{Bl4ck_b0X_Comm4nd_Injection_wow}
 lv7.2: CBJS{Lat3r4l_Mov3MEnt_Extr4ct_d4ta_fR0m_DB}
-
-1: 0b4df8
-2: 763d03
-2.5: 520c29
-3: a3183b
-4: dbf02a
-5: b56c6e
-6: 5be245
-
-
-dbf02a
