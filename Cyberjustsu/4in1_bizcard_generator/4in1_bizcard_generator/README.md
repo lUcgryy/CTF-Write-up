@@ -56,3 +56,18 @@ $input = addslashes($input);
 Ở đây, biến input chỉ được xử lí qua hàm `addslashes`. Hàm này sẽ tự động thêm dấu `\` vào trước các kí tự cần escaped gồm có `\`, `'` và `"` (Nguồn: [addslashes](https://php.net/addslashes)). Tuy vậy, điều này cũng vô nghĩa do các kí tự ở giữa hai giữa dấu nháy đơn trong linux shell đều bị "vô hiệu hóa" tức là chỉ được xem như là kí tự bình thường kể cả dấu `\`. Do đó, chúng ta chỉ cần nhập ``';command #`` là ổn (nhớ là đừng chọn type random)
 
 ![test](./image/level1/1.png)
+
+-   `;ls / #`
+
+![ls](./image/level1/2.png)
+
+-   `;cat /secret_file #`
+
+![payload](./image/level1/3.png)
+
+## **2. Level 2**
+```php
+$input = substr($input,0,10);
+$input = addslashes($input);
+```
+Ở level này, ta chỉ được sử dụng tối đa 10 kí tự
