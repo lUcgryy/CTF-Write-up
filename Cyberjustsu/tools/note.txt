@@ -1,0 +1,10 @@
+flag 1: nmap -sC -sV -A url
+flag 2: gobuster dir -e -u "url" -w /usr/bin/seclists/..
+flag 3: gobuster fuzz -u "url" -w /usr/bin/seclists/..
+
+virtual host:
+
+    http request host header:
+    sudo etc/hosts
+        ip name
+        

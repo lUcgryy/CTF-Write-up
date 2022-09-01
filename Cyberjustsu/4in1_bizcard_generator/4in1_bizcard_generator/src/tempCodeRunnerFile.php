@@ -1,0 +1,2 @@
+<?php
+figlet "Hello $username"
