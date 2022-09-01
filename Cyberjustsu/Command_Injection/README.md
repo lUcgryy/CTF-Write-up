@@ -25,7 +25,7 @@ timeout 10 ping -c 4 ;id 2>&1
 Ở đây, chương trình sẽ thực hiện lệnh ping trước rồi đến lệnh id (note: dấu chấm phẩy có tác dụng ngăn cách giữa 2 lệnh). Nếu đúng là vậy thì sẽ có kết quả của lệnh id cho chúng ta.
 
 Chúng ta hãy thử xem sao:
-![id](/image/level1/1.png)
+![id](./image/level1/1.png)
 Vậy là chúng ta đã khai thác thành công rồi, chúng ta sẽ thay lệnh id bằng các câu lệnh khác để truy tìm ra flag
 
 **Payload:**
