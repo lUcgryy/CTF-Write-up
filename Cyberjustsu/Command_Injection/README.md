@@ -141,6 +141,7 @@ Level này có 2 flag.
 
 ### **Flag 1**
 **Payload: `';cat /*.txt #`**
+
 ![payload](./image/level8/2.png)
 ### **Flag 2**
 Có vẻ như flag 2 nằm ở trong database mysql (dựa vào [test_pdo.php](./cmdi_level7/test_pdo.php)).
