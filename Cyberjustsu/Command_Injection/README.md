@@ -168,9 +168,3 @@ Vậy là nó hoạt động. Tiếp theo, mình nghiên cứu cách truy vấn 
 Payload này để biết được các table có trong database này. Ở đây chỉ có `flag_table`
 ![table](./image/level8/5.png)
 Sửa biến query thành `SELECT * FROM flag_table` để truy xuất ra flag
-
-<<<<<<< HEAD
-![flag](./image/level8/6.png)
-=======
-![flag](/image/level8/6.png)
->>>>>>> e0927bdee44fea3caa0d49a037e2a2f9a404a6d5
