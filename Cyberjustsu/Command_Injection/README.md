@@ -25,13 +25,18 @@ timeout 10 ping -c 4 ;id 2>&1
 Ở đây, chương trình sẽ thực hiện lệnh ping trước rồi đến lệnh id (note: dấu chấm phẩy có tác dụng ngăn cách giữa 2 lệnh). Nếu đúng là vậy thì sẽ có kết quả của lệnh id cho chúng ta.
 
 Chúng ta hãy thử xem sao:
+
 ![id](./image/level1/1.png)
+
 Vậy là chúng ta đã khai thác thành công rồi, chúng ta sẽ thay lệnh id bằng các câu lệnh khác để truy tìm ra flag
 
 **Payload:**
 -   **;ls /**
+
 ![ls /](./image/level1/2.png)
+
 -   **;cat /142awdfasd_secret.txt**
+
 ![cat](./image/level1/3.png)
 
 ## **2. [Level 2](https://cmdi.cyberjutsu-lab.tech:12002/)**
@@ -42,6 +47,7 @@ Nhìn vào code, ta thấy rằng, người ta không cho mình sử dụng dấ
 if (strpos($target, ";") !== false) 
     die("Hacker detected!");
 ```
+
 ![Fail](./image/level2/1.png)
 
 Tuy nhiên, ngoài dấu ; ra, chúng ta còn có các cách khác để phân cách hai lệnh với nhau (dùng `|`, `||`, `&` hoặc `&&`). Ở đây ta sử dụng `|`.
@@ -56,13 +62,17 @@ Bài này không có source code.
 Bài này người ta không cho mình dùng `;`, `|` và `&` tức là chúng ta không thể thực hiện nhiều câu lệnh cùng lúc
 
 ![;](./image/level3/1.png)
+
 ![|](./image/level3/2.png)
+
 ![&](./image/level3/3.png)
 
 Tuy nhiên, ta vẫn có thể thực hiện lồng câu lệnh trong một câu lệnh bằng dấu `` ` `` hoặc `$()`
+
 ![example](./image/level3/4.png)
 
 **Payload: `` `nl /*.txt` `` (dùng dig)**
+
 ![nl](./image/level3/5.png)
 
 ## **4. [Level 3](https://cmdi.cyberjutsu-lab.tech:12004/)**
@@ -89,10 +99,12 @@ timeout 3 zip /tmp/;id>/var/www/html/lUcgryy.txt # -r /var/www/html/index.php 2>
 Kết quả:
 
 ![id](./image/level4/1.png)
+
 ![id2](./image/level4/2.png)
 
 Vậy là chúng ta đã khai thác thành công rồi
 **Payload: `;cat /*.txt>/var/www/html/lUcgryy.txt #`**
+
 ![payload](./image/level4/3.png)
 
 ## **5. [Level 4](https://cmdi.cyberjutsu-lab.tech:12005/)**
@@ -101,12 +113,14 @@ Source code: [index.php](./cmdi_level4/src/index.php), [nginx.conf](./cmdi_level
 Mình thử lại payload của level 3 và nó cũng ra flag (chắc là lỗi kĩ thuật)
 
 **Payload: `;cat /*.txt>/var/www/html/lUcgryy.txt #`**
+
 ![payload](./image/level5/1.png)
 
 ## **6. [Level 5](https://cmdi.cyberjutsu-lab.tech:12006/)**
 Source code: [index.php](./cmdi_level5/src/index.php), [nginx.conf](./cmdi_level5/config/nginx.conf)
 
 Source code như cũ, nhưng khi thử lại payload của 2 level trên thì file `lUcgryy.txt` không tồn tại trên server.
+
 ![404](./image/level6/1.png)
 
 Có vẻ như người ta đã chặn quyền viết vào thư mục `/var/www/html` nên chúng ta không thể chuyển kết quả của câu lệnh vào file khác.
@@ -143,13 +157,14 @@ Level này có 2 flag.
 **Payload: `';cat /*.txt #`**
 
 ![payload](./image/level8/2.png)
+
 ### **Flag 2**
 Có vẻ như flag 2 nằm ở trong database mysql (dựa vào [test_pdo.php](./cmdi_level7/test_pdo.php)).
 
 Đầu tiên, mình thử kết nối với mysql trên máy tính linux của mình thì không thể kết nối được. Do đó, chỉ có cách kết nối thông qua server của website bởi vì file [test_pdo.php](./cmdi_level7/test_pdo.php) chạy thành công.
 
 ![testmysql](./image/level8/3.png)
-k
+
 Vì vậy, mình test thử lệnh mysql nhưng nó không hoạt động bởi vì server không hỗ trợ lệnh này. Do đó, mình chuyển qua sử dụng lệnh php
 Trước hết, mình kiểm tra thử lệnh này có hoạt động được hay không bằng cách `';php -r 'phpinfo();' #`
 ![testphp](./image/level8/4.png)
@@ -167,5 +182,7 @@ Vậy là nó hoạt động. Tiếp theo, mình nghiên cứu cách truy vấn 
         echo "php connect to mysql failed with:\n $e";}' #
 ```
 Payload này để biết được các table có trong database này. Ở đây chỉ có `flag_table`
+
 ![table](./image/level8/5.png)
+
 Sửa biến query thành `SELECT * FROM flag_table` để truy xuất ra flag
