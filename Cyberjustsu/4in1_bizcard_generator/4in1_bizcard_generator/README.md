@@ -1,8 +1,6 @@
-# Write-up 4IN1_BIZCARD_GENERATOR
-Đây là write up của bài lab tiếp theo về chủ đề OS Command Injection của Cyberjutsu. Mọi người làm bài lab bằng cách dùng lệnh `docker-compose up --build` rồi truy cập vào localhost:5555 nhé.
 
-Trước hết, chúng ta sẽ nói sơ qua về cách web này hoạt động
 
+<<<<<<< HEAD
 Chúng ta cần ba tham số đó là level, type, và username. Tham số username sẽ được xử lí thông qua hàm `validate_username` tùy vào level. Cuối cùng, web sẽ xử lí các lệnh `cowsay` khác nhau theo `type` mà ta chọn.
 ```php
 switch($type){
@@ -71,3 +69,5 @@ $input = substr($input,0,10);
 $input = addslashes($input);
 ```
 Ở level này, ta chỉ được sử dụng tối đa 10 kí tự
+=======
+>>>>>>> parent of 66a2804 (ignore)

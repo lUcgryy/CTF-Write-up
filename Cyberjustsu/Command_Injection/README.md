@@ -1,5 +1,5 @@
 # **Write-up lab Command Injection** 
-Đây là write-up bài lab Command Injection của Cyberjutsu. Bài lab này gồm tất cả là 9 level, trong đó có 7 level được cung cấp source code và 2 level ẩn. Mọi người có thể làm thử trên [website](https://cmdi.cyberjutsu-lab.tech:12001/) của cyberjutsu hoặc chạy bằng docker (dùng lệnh `docker-compose up --build`) rồi truy cập vào localhost:3001 nhé
+Đây là write-up bài lab Command Injection của Cyberjutsu. Bài lab này gồm tất cả là 9 level, trong đó có 7 level được cung cấp source code và 2 level ẩn. Mọi người có thể làm thử trên [website](https://cmdi.cyberjutsu-lab.tech:12001/) của cyberjutsu hoặc chạy bằng docker (dùng lệnh `docker-compose up --build`)
 
 ## **1. [Level 1](https://cmdi.cyberjutsu-lab.tech:12001/)**
 Source code: [index.php](./cmdi_level1/src/index.php)
