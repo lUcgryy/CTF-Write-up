@@ -2,7 +2,7 @@
 ## **I. Cryptography**
 
 ### **1. RSA**
-File được cung cấp: [task.py](/FPTUHacking_CTF_2022/Chung%20k%E1%BA%BFt/Cryptography/RSA/src/task.py)
+File được cung cấp: [task.py](./src/task.py)
 
 Đầu tiên, ta thấy rằng số N được tính ra bởi ba số nguyên tố:
 ```python
@@ -38,7 +38,7 @@ Tương tự: $q = GCD(N, a^5 - c^3)$ và $r = GCD(N, b^5 - c^6)$
 
 Khi tìm ra ba số nguyên tố p, q, r thì việc còn lại là giải mã là flag thôi
 
-Đây là script để giải thử thách này: [dec.py](/FPTUHacking_CTF_2022/Chung%20k%E1%BA%BFt/Cryptography/RSA/scripts/dec.py)
+Đây là script để giải thử thách này: [dec.py](./scripts/dec.py)
 
 Flag:
 ```

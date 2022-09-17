@@ -105,3 +105,16 @@ $input = addslashes($input);
 ```
 Ở Level này có thêm các kí tự không được phép nhập vào, đáng chú ý là dấu `;`. Tuy vậy, ngoài `;`, `|`, `&`, chúng ta vẫn có thể phân cách các lệnh bằng dấu xuống dòng có vị trí trong bảng ascii là 0A (tương tự như lúc chúng ta Enter để thực hiện lệnh)
 **Payload:** gán tham số username = `` `cd%09..%0acd%09..%0acd%09..%0acat%09secret_file` `` và type = figlet. Kết quả như hình dưới:
+
+![payload](./image/level4/1.png)
+
+## **Bonus**
+Ta còn có thể vượt qua các filter trên bằng cách mã hóa câu lệnh mình muốn và dùng lệnh `base64 -d` kết hợp với `bash` để thực thi câu lệnh, cụ thể là:
+```zsh
+echo 'câu lệnh đã được mã hóa'|base64 -d|bash
+```
+Do đó, payload ở đây sẽ là: gán tham số username = `` `echo%09Y2F0IC8q|base64%09-d|bash` ``
+
+Note: `cat \*` khi mã hóa base64 sẽ thành Y2F0IC8q
+
+![bonus](./image/bonus.png)
