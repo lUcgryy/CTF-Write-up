@@ -109,8 +109,10 @@ print(bytes.fromhex(msg_hex).decode('utf-8'))
 Nhìn vào source code, ta thấy rằng ta đã có 2 bộ public key (e1,c1) và (e2,c2). Vì vậy, ta có thể dùng phương pháp Common modulus (same n) để giải mã mà không cần phải tìm p và q.
 
 Ý tưởng của phương pháp tấn công này (điều kiện là ƯCLN(e1, e2) = 1):
--   Dùng giải thuật Euclid mở rộng để tìm hai số a,b sao cho $$ e_1*a + e_2*b = 1 $$
--   Tính ra msg bằng cách sau $$ msg = msg^1 = msg^{e_1*a + e_2*b} = (msg^{e_1})^a*(msg^{e_2})^b = c_1^a*c_2^b $$
+-   Dùng giải thuật Euclid mở rộng để tìm hai số a,b sao cho 
+$$ e_1*a + e_2*b = 1 $$
+-   Tính ra msg bằng cách sau 
+$$ msg = msg^1 = msg^{e_1*a + e_2*b} = (msg^{e_1})^a*(msg^{e_2})^b = c_1^a*c_2^b $$
 
 **Script** (mình tham khảo từ https://github.com/HexPandaa/RSA-Common-Modulus-Attack): [dec.py](./RSA/dec.py)
 
