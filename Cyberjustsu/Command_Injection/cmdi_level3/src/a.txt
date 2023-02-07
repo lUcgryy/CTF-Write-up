@@ -1,1 +1,3 @@
-CBJS{Blind_Command_Injection}
+a.txt
+index.php
+lUcgryy.txt

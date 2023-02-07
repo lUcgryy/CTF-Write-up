@@ -8,7 +8,7 @@
                 if ($result !== null && strpos($result, "zip error") === false)
                     die("Backup thành công");
                 else
-                    die("Backup không   thành công");
+                    die("Backup không thành công");
 				break;
             // CHANGELOG: Bảo trì
 			// case "ping":
