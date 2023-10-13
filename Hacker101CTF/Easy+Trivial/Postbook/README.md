@@ -18,6 +18,6 @@ Flag: Can delete other's post without permission (IDOR)
 
 ![](./img/4.png)
 
-Flag: Can change username and password of other's account (IDOR)
+2 Flags: Can change username and password of other's account (IDOR) -> account take over (user and admin)
 
 ![](./img/5.png)
