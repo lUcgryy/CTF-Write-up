@@ -14,6 +14,15 @@ data = 256^a * (256^l*m_0 + \sum_{i=0}^{l-1} 256^i*u_i) + c
 
 với a là độ dài của phần thứ 3 của data (phần còn lại)
 
-Do đó, ta sẽ tìm $\overline{u_l u_{l-1} \ldots u_1 u_0}$ sao cho $\(256^a*(256^l*m_0 + 256^{l-1}*u_{l-1} + 256^{l-2}*u_{l-2} + \ldots + 256^0*u_0) + c \equiv 256^a*v + c (mod p)\)$ tương đương với $256^{l-1}*u_{l-1} + 256^{l-2}*u_{l-2} + \ldots + 256^0*u_0 - (256^l*m_0 - v) \equiv 0 \text{ (mod p)}$
+Do đó, ta sẽ tìm $\overline{u_l u_{l-1} \ldots u_1 u_0}$ sao cho
+
+```math
+256^a*(256^l*m_0 + 256^{l-1}*u_{l-1} + 256^{l-2}*u_{l-2} + \ldots + 256^0*u_0) + c \equiv 256^a*v + c \text{ (mod p)}
+```
+
+tương đương với 
+```math
+256^{l-1}*u_{l-1} + 256^{l-2}*u_{l-2} + \ldots + 256^0*u_0 - (256^l*m_0 - v) \equiv 0 \text{ (mod p)}
+```
 
 Với bài toán này, ta có thể dùng thuật toán Lenstra–Lenstra–Lovász (LLL). `LLL` sẽ cố gắng tìm "nghiệm gần với 0 nhất". Để thuận tiện hơn, ta sẽ đặt $x_i = u_i - 109$ để khiến $\(x_i \in [-12, 13] \) $
