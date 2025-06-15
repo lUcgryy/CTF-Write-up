@@ -31,7 +31,12 @@ Với bài toán này, ta có thể dùng thuật toán Lenstra–Lenstra–Lov�
 256^{l-1}*x_{l-1} + 256^{l-2}*x_{l-2} + \ldots + 256^0*x_0 + (256^l*m_0 +109*(256^{l-1} + 256^{l-2} + \ldots + 256^1 + 256^0) - v)
 ```
 
-Đặt $s = 256^l*m_0 +109*(256^{l-1} + 256^{l-2} + \ldots + 256^1 + 256^0$ thì từ đó ta thấy rằng sẽ có số nguyên $k$ sao cho
+Đặt: 
+
+```math
+s = 256^l*m_0 +109*(256^{l-1} + 256^{l-2} + \ldots + 256^1 + 256^0 
+```
+thì từ đó ta thấy rằng sẽ có số nguyên $k$ sao cho
 
 ```math
 256^{l-1}*x_{l-1} + 256^{l-2}*x_{l-2} + \ldots + 256^0*x_0 + s + k*p = 0
