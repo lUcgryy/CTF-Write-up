@@ -57,3 +57,5 @@ t = [0, 1, x_{l-1} \ldots, x_1, x_0] = 1*[s, 1, 0, \ldots, 0] + x_{l-1}*[256^{l-
 ```
 
 Nhờ việc các hệ số đều là số nguyên, ta có thể dùng thuật toán LLL để tìm nghiệm gần với 0 nhất. Từ đó, ta sẽ tìm được $x_i$ và từ đó suy ra $u_i$.
+
+Solve script: [solv.py](solv.py) (Cần Sagemath)
