@@ -19,6 +19,7 @@ Do đó, ta sẽ tìm $\overline{u_l u_{l-1} \ldots u_1 u_0}$ sao cho
 ```math
 256^a*(256^l*m_0 + 256^{l-1}*u_{l-1} + 256^{l-2}*u_{l-2} + \ldots + 256^0*u_0) + c \equiv 256^a*v + c \text{ (mod p)}
 ```
+với `v = bytes_to_long(b'{"user": "admin')`
 
 tương đương với 
 ```math
@@ -28,7 +29,7 @@ tương đương với
 Với bài toán này, ta có thể dùng thuật toán Lenstra–Lenstra–Lovász (LLL). `LLL` sẽ cố gắng tìm "nghiệm gần với 0 nhất". Để thuận tiện hơn, ta sẽ đặt $x_i = u_i - 109$ để khiến $\(x_i \in [-12, 13] \) $
 
 ```math
-256^{l-1}*x_{l-1} + 256^{l-2}*x_{l-2} + \ldots + 256^0*x_0 + (256^l*m_0 +109*(256^{l-1} + 256^{l-2} + \ldots + 256^1 + 256^0) - v)
+256^{l-1}*x_{l-1} + 256^{l-2}*x_{l-2} + \ldots + 256^0*x_0 + (256^l*m_0 +109*(256^{l-1} + 256^{l-2} + \ldots + 256^1 + 256^0) - v) \equiv 0 \text{ (mod p)}
 ```
 
 Đặt: 
