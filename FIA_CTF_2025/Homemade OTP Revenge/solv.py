@@ -1,29 +1,33 @@
 # import pwn
 import json
 from hashlib import sha1
+import pwn
 
 from sage.all import *
 
 from Crypto.Util.number import bytes_to_long, long_to_bytes, getPrime # pip install pycryptodome
 
-# pwn.context.log_level = 'debug'
+pwn.context.log_level = 'debug'
 
-# io = pwn.process(['python', 'chall.py'])
+io = pwn.process(['python', 'chall.py'])
 
-# def generate_command_data(user, command):
-#     io.sendlineafter(b'Enter choice: ', b'1')
-#     io.sendlineafter(b'Enter user: ', user.encode())
-#     io.sendlineafter(b'Enter command: ', command.encode())
-#     return io.recvline().decode().strip()
+def generate_command_data(user, command):
+    io.sendlineafter(b'Enter choice: ', b'1')
+    io.sendlineafter(b'Enter user: ', user.encode())
+    io.sendlineafter(b'Enter command: ', command.encode())
+    return io.recvline().decode().strip()
 
-# def execute_command(data):
-#     io.sendlineafter(b'Enter choice: ', b'2')
-#     io.sendlineafter(b'Enter data: ', data.encode())
-#     return io.recvline().decode().strip()
+def execute_command(data):
+    io.sendlineafter(b'Enter choice: ', b'2')
+    io.sendlineafter(b'Enter data: ', data.encode())
+    return io.recvline().decode().strip()
 
 m0 = bytes_to_long(b'{"user": "')
 v = bytes_to_long(b'{"user": "admin')
-p = 66121435429205161366221191885149776902043242314543344699871226787126515223877
+io.recvuntil(b'modulus = ')
+p = int(io.recvline().strip().decode())
+# p = 66121435429205161366221191885149776902043242314543344699871226787126515223877
+answer = b''
 for l in range(100,200):
     print(f'[ ] Trying {l = }...')
     s = int((sum(256**i * 109 for i in range(l)) + 256**l * m0 - v) % p)
@@ -68,20 +72,27 @@ for l in range(100,200):
             continue
         m = bytes(109 + mc for mc in row[2:]).decode()
         print(f'[+] Found: {m} with {l = }')
-# for _ in range(5):
-#     raw_data = generate_command_data('admin', 'get_flag')
-#     a = json.loads(raw_data)
-#     print(f'Raw data:', raw_data)
+        answer = m
+    if answer:
+        break
+
+for _ in range(5):
+    raw_data = generate_command_data(answer, 'get_flag')
+    a = json.loads(raw_data)
+    print(f'Raw data:', raw_data)
+    otp = a['otp']
+    key = a['key']
     
-#     print(a)
-#     key = bytes.fromhex(a['key'])
-#     new_key = sha1(key).hexdigest()
-#     print(f'New key:', new_key)
-#     a['key'] = new_key
-#     payload = json.dumps(a)
-#     print(f'Payload:', payload)
+    a['user'] = 'admin'
+    # print(a)
+    # key = bytes.fromhex(a['key'])
+    # new_key = sha1(key).hexdigest()
+    # print(f'New key:', new_key)
+    # a['key'] = new_key
+    payload = json.dumps(a)
+    print(f'Payload:', payload)
     
-#     execute_command(payload)
+    execute_command(payload)
 
 
-# p.interactive()
+io.interactive()
